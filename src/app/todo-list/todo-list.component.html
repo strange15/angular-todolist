@@ -1,0 +1,34 @@
+<section class="todoapp">
+
+  <header class="header">
+	<h1>todos</h1>
+    <input
+      class="new-todo"
+      placeholder="What needs to be done?"
+      autofocus
+      (keyup.enter)="addTodo($event)"
+    >
+  </header>
+
+  <!-- 清單區域開始 -->
+  <section class="main">
+
+    <ul class="todo-list">
+      <li *ngFor="let todo of getList(); let i = index"
+        [ngClass]="{'completed': todo.done}"
+      >
+        <div class="view">
+          <input class="toggle" type="checkbox"
+            (click)="todo.toggleCompletion()"
+            [checked]="todo.done"
+          >
+          <label>{{ todo.getTitle() }}</label>
+          <button class="destroy" (click)="remove(i)"></button>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+  <!-- 清單區域結束 -->
+
+</section>
