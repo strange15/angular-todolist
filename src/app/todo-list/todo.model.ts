@@ -15,23 +15,51 @@ export class Todo {
     this.title = title || ''; // 為避免傳入的值為 Falsy 值，稍作處理
   }
 
-   /**
+  /**
    * 事項名稱
    *
    * @private
    * @memberof Todo
    */
-   private title = '';
+  private title = '';
 
-   /**
-    * 完成與否
-    *
-    * @private
-    * @memberof Todo
-    */
-   private completed = false;
+  /**
+   * 完成與否
+   *
+   * @private
+   * @memberof Todo
+   */
+  private completed = false;
 
-   /**
+  /**
+   * 是否處於編輯模式
+   *
+   * @private
+   * @memberof Todo
+   */
+  private editMode = false;
+
+  /**
+   * 取得此事項是否處於編輯模式
+   *
+   * @readonly
+   * @type {boolean}
+   * @memberof Todo
+   */
+  get editing(): boolean {
+    return this.editMode;
+  }
+
+  /**
+   * 設定此事項是否可被編輯
+   *
+   * @memberof Todo
+   */
+  set editable(bl: boolean) {
+    this.editMode = bl;
+  }
+
+  /**
    * 此事項是否已經完成
    *
    * @readonly
@@ -51,6 +79,17 @@ export class Todo {
   getTitle(): string {
     return this.title;
   }
+
+  /**
+   * 設定事項名稱
+   *
+   * @param {string} title
+   * @memberof Todo
+   */
+  setTitle(title: string): void {
+    this.title = title;
+  }
+
 
   /**
    * 來回切換完成狀態
