@@ -37,7 +37,7 @@ export class Todo {
    * @private
    * @memberof Todo
    */
-  private editMode = false;
+  private isEditing = false;
 
   /**
    * 取得此事項是否處於編輯模式
@@ -47,7 +47,7 @@ export class Todo {
    * @memberof Todo
    */
   get editing(): boolean {
-    return this.editMode;
+    return this.isEditing;
   }
 
   /**
@@ -56,7 +56,7 @@ export class Todo {
    * @memberof Todo
    */
   set editable(bl: boolean) {
-    this.editMode = bl;
+    this.isEditing = bl;
   }
 
   /**
@@ -98,5 +98,15 @@ export class Todo {
    */
   toggleCompletion(): void {
     this.completed = !this.completed;
+  }
+
+  /**
+   * 設定是否完成
+   *
+   * @param {boolean} completed
+   * @memberof Todo
+   */
+  setCompleted(completed: boolean): void {
+    this.completed = completed;
   }
 }

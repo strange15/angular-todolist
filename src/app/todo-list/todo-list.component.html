@@ -11,8 +11,18 @@
   </header>
 
   <!-- 清單區域開始 -->
-  <section class="main" *ngIf="getList().length">
+  <section class="main" *ngIf="getAllList().length">
     <ul class="todo-list">
+      <input
+        id="toggle-all"
+        class="toggle-all"
+        type="checkbox"
+        *ngIf="getAllList().length"
+        #toggleall
+        [checked]="allCompleted()"
+        (click)="setAllTo(toggleall.checked)">
+      <label for="toggle-all"></label>
+
       <li *ngFor="let todo of getList(); let i = index"
         [ngClass]="{'completed': todo.done, 'editing': todo.editing}"
       >
@@ -39,11 +49,47 @@
   </section>
   <!-- 清單區域結束 -->
 
-  <footer class="footer" *ngIf="getList().length">
+  <footer class="footer" *ngIf="getAllList().length">
     <span class="todo-count">
       <strong>{{ getRemainingList().length }}</strong>
       {{ getRemainingList().length > 1 ? 'items' : 'item'}} left
     </span>
+    <ul class="filters">
+      <li>
+        <a
+         href="javascript:;"
+         [class.selected]="checkStatus(todoStatusType.All)"
+         (click)="setStatus(todoStatusType.All)"
+        >
+          All
+        </a>
+      </li>
+      <li>
+        <a
+          href="javascript:;"
+          [class.selected]="checkStatus(todoStatusType.Active)"
+          (click)="setStatus(todoStatusType.Active)"
+        >
+          Active
+        </a>
+      </li>
+      <li>
+        <a
+          href="javascript:;"
+          [class.selected]="checkStatus(todoStatusType.Completed)"
+          (click)="setStatus(todoStatusType.Completed)"
+        >
+          Completed
+        </a>
+      </li>
+    </ul>
+    <button
+      class="clear-completed"
+      *ngIf="getCompletedList().length"
+      (click)="removeCompleted()"
+    >
+      Clear completed
+    </button>
   </footer>
 
 </section>

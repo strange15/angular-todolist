@@ -57,4 +57,13 @@ export class TodoListService {
     return this.list.filter(todo => todo.done === completed);
   }
 
+  /**
+   * 從清單中移除所有已完成之待辦事項
+   *
+   * @memberof TodoListService
+   */
+  removeCompleted(): void {
+    this.list = this.getWithCompleted(false);
+  }
+
 }
